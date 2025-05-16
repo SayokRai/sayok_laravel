@@ -10,6 +10,10 @@
             width: 86%;
             margin: 20px;
         }
+
+        button{
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>

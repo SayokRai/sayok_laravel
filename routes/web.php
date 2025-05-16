@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -20,4 +21,8 @@ Route::get('/company/create',function(){
 
 Route::get('/company/edit',function(){
     return view('company.edit');
+});
+
+route::get('/save-company',function(Request $request){
+    return $request;
 });

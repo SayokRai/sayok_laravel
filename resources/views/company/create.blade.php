@@ -1,8 +1,12 @@
 <x-layout>
-    <h1>
+    <div class="container flex justify-between items-center">
+        <h1>
         Create your company
     </h1>
-    <form class="container" action="">
+    <a href="/company"><button class="px-4 py-2 bg-orange-500 rounded">Return</button></a>
+    </div>
+    <form class="container" action="/save-company">
+        @csrf
         <div class="grid grid-cols-2 gap-3">
             <div>
                 <label for="name">Company name</label>
