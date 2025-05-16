@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Models\Company;
 
 Route::get('/', function () {
     return view('home');
@@ -24,5 +25,11 @@ Route::get('/company/edit',function(){
 });
 
 route::get('/save-company',function(Request $request){
-    return $request;
+    // return $request;
+    $company = new Company();
+    $company->name = $request->name;
+    $company->email = $request->email;
+    $company->address = $request->address;
+    $company->save();
+    return redirect('/company');
 });
