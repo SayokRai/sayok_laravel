@@ -5,7 +5,8 @@
     </h1>
     <a href="/company"><button class="px-4 py-2 bg-orange-500 rounded">Return</button></a>
     </div>
-    <form class="container" action="/save-company">
+    <img src="{{asset('images/1000000594.jpg')}}" alt="jci">
+    <form class="container" action="/save-company" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="grid grid-cols-2 gap-3">
             <div>

@@ -24,12 +24,18 @@ Route::get('/company/edit',function(){
     return view('company.edit');
 });
 
-route::get('/save-company',function(Request $request){
+route::post('/save-company',function(Request $request){
     // return $request;
     $company = new Company();
     $company->name = $request->name;
     $company->email = $request->email;
     $company->address = $request->address;
+    $file = $request->logo;
+    if ($file){
+        $file_name = time() . "." . $file->getClientOriginalExtension();
+        $file->move("photos",$file_name);
+        $company->logo = "photos/$file_name";
+    }//name+.+file_extension 122345.jpg
     $company->save();
     return redirect('/company');
 });
