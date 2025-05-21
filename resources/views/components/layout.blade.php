@@ -8,7 +8,8 @@
     <style>
         .container {
             width: 86%;
-            margin: 20px;
+            margin: auto;
+            padding: 20px;
         }
 
         button{
