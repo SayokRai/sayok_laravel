@@ -24,13 +24,14 @@
                             <td class="py-1 border">{{$item->name}}</td>
                             <td class="py-1 border">{{$item->email}}</td>
                             <td class="py-1 border">{{$item->address}}</td>
-                            <td class="py-1 border">
-                                <img src="{{asset($item->logo)}}" alt="">
+                            <td class="py-1 border ">
+                                <img class="h-[60px]" src="{{asset($item->logo)}}" alt="">
                             </td>
                             <td class="py-1 border">
                                 <form action="/delete-company/{{$item->id}}" method="post">
                                     @csrf
                                     @method("delete")
+                                    <a href="/edit-company/{{$item->id}}">Edit</a>
                                     <button type="submit" class="bg-red-500 rounded text-white px-4 py-2">Delete</button>
                                 </form>
                             </td>

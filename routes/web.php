@@ -45,3 +45,24 @@ Route::delete("/delete-company/{id}", function($id){
     Company::find($id)->delete();
     return redirect('/company');
 });
+
+Route::get("/edit-company/{id}", function($id){
+    $company = Company::find($id);
+    return view('company.edit', compact('company'));
+});
+
+route::put('/update-company/{id}',function(Request $request, $id){
+    // return $request;
+    $company = Company::find($id);
+    $company->name = $request->name;
+    $company->email = $request->email;
+    $company->address = $request->address;
+    $file = $request->logo;
+    if ($file){
+        $file_name = time() . "." . $file->getClientOriginalExtension();
+        $file->move("photos",$file_name);
+        $company->logo = "photos/$file_name";
+    }//name+.+file_extension 122345.jpg
+    $company->save();
+    return redirect()->back();
+});
