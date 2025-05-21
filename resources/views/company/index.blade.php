@@ -1,28 +1,41 @@
 <x-layout>
     <section>
-        <div class="container flex justify-between items-center">
+        <div class="container flex justify-between items-center mb-[50px]">
             <h1>index page</h1>
             <a href="/company/create"> <button class="bg-red-500 rounded px-4 py-2">Create yo company</button> </a>
         </div>
 
-        <div>
-            <table>
-                <thead>
+        <div class="mt-[30px]">
+            <table class="w-full text-center">
+                <thead class="bg-gray-200">
                     <tr>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Address</th>
-                        <th>Logo</th>
-                        <th>Action</th>
+                        <th class="py-1 border">Name</th>
+                        <th class="py-1 border">SN</th>
+                        <th class="py-1 border">Email</th>
+                        <th class="py-1 border">Address</th>
+                        <th class="py-1 border">Logo</th>
+                        <th class="py-1 border">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>
-                            1
-                        </td>
-                        t
-                    </tr>
+                    @foreach ($companies as $item)
+                        <tr>
+                            <td class="py-1 border">{{$item->id}}</td>
+                            <td class="py-1 border">{{$item->name}}</td>
+                            <td class="py-1 border">{{$item->email}}</td>
+                            <td class="py-1 border">{{$item->address}}</td>
+                            <td class="py-1 border">
+                                <img src="{{asset($item->logo)}}" alt="">
+                            </td>
+                            <td class="py-1 border">
+                                <form action="/delete-company/{{$item->id}}" method="post">
+                                    @csrf
+                                    @method("delete")
+                                    <button type="submit" class="bg-red-500 rounded text-white px-4 py-2">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

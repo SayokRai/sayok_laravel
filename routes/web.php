@@ -13,7 +13,8 @@ Route::get('/about', function () {
 });
 
 Route::get('/company',function(){
-    return view('company.index');
+    $companies = Company::all();
+    return view('company.index', compact('companies'));
 });
 
 Route::get('/company/create',function(){
@@ -37,5 +38,10 @@ route::post('/save-company',function(Request $request){
         $company->logo = "photos/$file_name";
     }//name+.+file_extension 122345.jpg
     $company->save();
+    return redirect('/company');
+});
+
+Route::delete("/delete-company/{id}", function($id){
+    Company::find($id)->delete();
     return redirect('/company');
 });
