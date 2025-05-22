@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\Company;
+use App\Models\Student;
 
 Route::get('/', function () {
     return view('home');
@@ -65,4 +66,28 @@ route::put('/update-company/{id}',function(Request $request, $id){
     }//name+.+file_extension 122345.jpg
     $company->save();
     return redirect()->back();
+});
+
+route::get('/students', function () {
+    return view('students.index');
+});
+
+route::get('/students/create', function () {
+    return view('students.create');
+});
+
+route::post('/save-students', function (Request $request) {
+    $student = new Student();
+    $student->name = $request->name;
+    $student->age = $request->age;
+    $student->grade = $request->grade;
+    $student->address = $request->address;
+    $file = $request->photo;
+    if ($file){
+        $fileName = time() . '.' . $file->getClientOriginalExtension();
+        $file->move ("photos",$fileName);
+        $student-> photo = "photos/$fileName";
+    }
+    $student->save();
+    return redirect('/student');
 });

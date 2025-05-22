@@ -13,5 +13,8 @@
         <li>
             <a href="/company">Company</a>
         </li>
+        <li>
+            <a href="/students">Students</a>
+        </li>
     </ul>
 </nav>
